@@ -9,7 +9,7 @@ const enderecoRegex = /^[a-zA-Z\u00C0-\u00FF ]+, [a-zA-Z\u00C0-\u00FF ]+, \d+$/;
 // Adiciona listener para o evento de submit do formulário
 formularioRegistro.addEventListener("submit", (e) => {
     e.preventDefault(); // Previne o comportamento padrão de submit
-
+    
     // Obtém os valores dos campos do formulário
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
@@ -62,12 +62,7 @@ formularioRegistro.addEventListener("submit", (e) => {
         })
     })
     .then(response => response.text()) // Converte a resposta para texto
-    .then(data => {
-        alert(data); // Mostra a resposta do servidor
-        if (data.toLowerCase().includes("sucesso")) { // Verifica se há "sucesso" na resposta
-            window.location.href = 'login.html'; // Redireciona para login.html
-        }
-    })
+    .then(data => alert(data)) // Mostra a resposta do servidor
     .catch(error => console.error('Erro:', error)); // Captura erros de rede
 });
 
@@ -78,7 +73,7 @@ document.querySelectorAll('#cadastroForm input').forEach(input => {
         // Verifica se o próximo elemento é uma mensagem de validação
         if (mensagem && mensagem.classList.contains('mensagem1')) {
             let isValid = false;
-
+            
             // Aplica a validação específica para cada campo
             switch(this.id) {
                 case 'email':
@@ -94,7 +89,7 @@ document.querySelectorAll('#cadastroForm input').forEach(input => {
                     isValid = this.value.length >= 8;
                     break;
             }
-
+            
             // Exibe/oculta mensagem de validação
             if (this.value === '') {
                 mensagem.style.display = 'none';
